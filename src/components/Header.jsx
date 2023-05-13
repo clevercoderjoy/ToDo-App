@@ -31,7 +31,7 @@ export const StyledLink = styled(Link)`
     text-align: center;
     display: block;
     padding: 1rem;
-    margin: 1rem;
+    margin: 0 1rem;
     font-size: 2rem;
     color: #272343;
     transition: all 0.2s ease-out;
