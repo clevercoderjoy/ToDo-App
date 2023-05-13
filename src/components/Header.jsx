@@ -11,9 +11,15 @@ function Header() {
             <StyledLink to="/">To-Do List</StyledLink>
             <StyledNav>
                 <StyledNavLink to="/">All Task</StyledNavLink>
+                <StyledNavLink to="/pending">Pending Task</StyledNavLink>
                 <StyledNavLink to="/completed">Completed Task</StyledNavLink>
-                <StyledNavLink to="/pending">Completed Task</StyledNavLink>
             </StyledNav>
+
+            <StyledDiv>
+                <StyledP>Total Tasks:<StyledSpan>{500}</StyledSpan></StyledP>
+                <StyledP>Tasks Pending:<StyledSpan>{500}</StyledSpan></StyledP>
+                <StyledP>Tasks Completed:<StyledSpan>{500}</StyledSpan></StyledP>
+            </StyledDiv>
 
             <Routes>
                 <Route path="/" element={<AllToDo />} />
@@ -44,7 +50,7 @@ export const StyledLink = styled(Link)`
 `;
 export const StyledNav = styled.nav`
     background: #bae8e8;
-    margin: 1rem;
+    margin: 0.6rem;
     padding: 0 1rem;
     border-radius: 5px;
     display: flex;
@@ -63,5 +69,31 @@ export const StyledNavLink = styled(NavLink)`
         color: white;
         padding: 1rem;
         border-radius: 10px;
+    }
+`;
+export const StyledDiv = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+export const StyledSpan = styled.span`
+    background: #ffd803;
+    padding: 0.5rem;
+    color: #2d334a;
+    border-radius: 5px;
+    transition: all 0.5s ease-out;
+`;
+export const StyledP = styled.p`
+    margin: 0.5rem;
+    padding: 0.5rem 0 0.5rem 0.5rem;
+    font-size: 1rem;
+    background: #bae8e8;
+    border-radius: 5px;
+    transition: all 0.5s ease-out;
+    &:hover{
+        background: #ffd803;
+        ${StyledSpan}{
+            background: #bae8e8;
+        }
     }
 `;
