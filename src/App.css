@@ -1,7 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,700;1,400&display=swap");
 
+html{
+    background: #e3f6f5;
+}
+
 #root {
     font-family: "Space Mono", monospace;
     border-radius: 5px;
     padding: 1rem;
+    margin: 1rem;
 }
