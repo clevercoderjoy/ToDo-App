@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 function Footer() {
     return (
         <>
-            <StyledH3>Built by <StyledLink>clevercoderjoy {"{...}"}</StyledLink></StyledH3>
+            <StyledH3>Built by <StyledLink to="https://clevercoderjoy.bio.link/" target="_blank">clevercoderjoy {"{...}"}</StyledLink></StyledH3>
         </>
     )
 }
