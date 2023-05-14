@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Routes, Route, NavLink, Link } from 'react-router-dom';
 import styled from "styled-components";
+
 import AllToDo from './AllToDo';
 import CompletedToDo from './CompletedToDo';
 import PendingToDo from './PendingToDo';
+import { TaskContext } from '../contexts/TaskContext';
 
 function Header() {
+    const { allToDo } = useContext(TaskContext);
+    const { pendingToDo } = useContext(TaskContext);
+    const { completedToDo } = useContext(TaskContext);
+
     return (
         <>
             <StyledLink to="/">To-Do List</StyledLink>
@@ -16,9 +22,9 @@ function Header() {
             </StyledNav>
 
             <StyledDiv>
-                <StyledP>Total Tasks:<StyledSpan>{500}</StyledSpan></StyledP>
-                <StyledP>Tasks Pending:<StyledSpan>{500}</StyledSpan></StyledP>
-                <StyledP>Tasks Completed:<StyledSpan>{500}</StyledSpan></StyledP>
+                <StyledP>Total Tasks:<StyledSpan>{allToDo.length}</StyledSpan></StyledP>
+                <StyledP>Tasks Pending:<StyledSpan>{pendingToDo.length}</StyledSpan></StyledP>
+                <StyledP>Tasks Completed:<StyledSpan>{completedToDo.length}</StyledSpan></StyledP>
             </StyledDiv>
 
             <Routes>
@@ -84,7 +90,7 @@ export const StyledSpan = styled.span`
     transition: all 0.5s ease-out;
 `;
 export const StyledP = styled.p`
-    margin: 0.5rem;
+    margin: 0.5rem 1rem;
     padding: 0.5rem 0 0.5rem 0.5rem;
     font-size: 1rem;
     background: #bae8e8;
