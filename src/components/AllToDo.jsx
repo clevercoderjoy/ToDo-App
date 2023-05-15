@@ -21,7 +21,7 @@ function AllToDo() {
                                     <StyledStatus>Status: </StyledStatus><StyledStatusValue> {isCompleted ? "Done" : "Pending"}</StyledStatusValue>
                                 </StyledStatusContainer>
                                 <StyledButtonContainer>
-                                    <StyledBtnDone>{!isCompleted ? "Mark as Done" : "Mark as Pending"}</StyledBtnDone>
+                                    <StyledBtnDone>Mark as Done</StyledBtnDone>
                                     <StyledBtnMore>See More</StyledBtnMore>
                                 </StyledButtonContainer>
                             </StyledLi>
