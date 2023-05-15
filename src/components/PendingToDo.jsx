@@ -16,10 +16,10 @@ function PendingToDo() {
                             <StyledLi key={id}>
                                 <StyledTask>Task: {title}</StyledTask>
                                 <StyledStatusContainer>
-                                    <StyledStatus>Status: </StyledStatus><StyledStatusValue> {'' + isCompleted}</StyledStatusValue>
+                                    <StyledStatus>Status: </StyledStatus><StyledStatusValue> {isCompleted ? "Done" : "Pending"}</StyledStatusValue>
                                 </StyledStatusContainer>
                                 <StyledButtonContainer>
-                                    <StyledBtnDone>Mark as Done</StyledBtnDone>
+                                    <StyledBtnDone>{isCompleted ? "Mark as Pending" : "Mark as Done"}</StyledBtnDone>
                                     <StyledBtnMore>See More</StyledBtnMore>
                                 </StyledButtonContainer>
                             </StyledLi>
@@ -105,7 +105,7 @@ export const StyledBtnMore = styled.button`
     border-radius: 5px;
     font-weight: bold;
     width: 110px;
-    height: 30px;
+    height: 40px;
     cursor: pointer;
     text-align: center;
     padding: 0.5rem;
