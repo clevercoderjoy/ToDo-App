@@ -18,7 +18,7 @@ function CompletedToDo() {
                                     <StyledStatus>Status: </StyledStatus><StyledStatusValue> {isCompleted ? "Done" : "Pending"}</StyledStatusValue>
                                 </StyledStatusContainer>
                                 <StyledButtonContainer>
-                                    <StyledBtnDone>Mark as Done</StyledBtnDone>
+                                    <StyledBtnDone>{!isCompleted ? "Mark as Done" : "Mark as Pending"}</StyledBtnDone>
                                     <StyledBtnMore>See More</StyledBtnMore>
                                 </StyledButtonContainer>
                             </StyledLi>
