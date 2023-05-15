@@ -6,6 +6,7 @@ import AllToDo from './AllToDo';
 import CompletedToDo from './CompletedToDo';
 import PendingToDo from './PendingToDo';
 import { TaskContext } from '../contexts/TaskContext';
+import TaskCard from './TaskCard';
 
 function Header() {
     const { allToDo } = useContext(TaskContext);
@@ -31,6 +32,7 @@ function Header() {
                 <Route path="/" element={<AllToDo />} />
                 <Route path="/completed" element={<CompletedToDo />} />
                 <Route path="/pending" element={<PendingToDo />} />
+                <Route path="/taskCard/:taskId" element={<TaskCard />} />
             </Routes>
         </>
     )

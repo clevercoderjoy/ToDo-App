@@ -28,10 +28,6 @@ export function TaskContextProvider({ children }) {
                 return { ...state, error: action.payload };
             case "allToDo":
                 return { ...state, allToDo: action.payload };
-            case "pendingToDo":
-                return { ...state, pendingToDo: action.payload };
-            case "completedToDo":
-                return { ...state, completedToDo: action.payload };
             default:
                 state;
         }
@@ -49,16 +45,6 @@ export function TaskContextProvider({ children }) {
                 dispatch({ type: ACTION.LOADING });
                 const receivedData = data.todos;
                 dispatch({ type: ACTION.ALL_TO_DO, payload: receivedData });
-                const filterPendingTasks = () => {
-                    const filteredTask = receivedData.filter((task) => !task.isCompleted);
-                    dispatch({ type: ACTION.PENDING_TODO, payload: filteredTask });
-                };
-                const filterCompletedTasks = () => {
-                    const filteredTask = receivedData.filter((task) => task.isCompleted);
-                    dispatch({ type: ACTION.COMPLETED_TODO, payload: filteredTask });
-                };
-                filterPendingTasks();
-                filterCompletedTasks();
             }
         }
         catch (e)
@@ -67,11 +53,17 @@ export function TaskContextProvider({ children }) {
         }
     };
 
-    const toggleTaskStatus = () => { };
+    const filteredPendingTask = state.allToDo.filter((task) => !task.isCompleted);
+    const filteredCompletedTask = state.allToDo.filter((task) => task.isCompleted);
+
+    const toggleTaskStatus = (task) => {
+        const targetTask = state.allToDo.map((item) => item === task ? { ...item, isCompleted: !task.isCompleted } : item);
+        dispatch({ type: ACTION.ALL_TO_DO, payload: targetTask });
+    };
 
     useEffect(() => { getTasks() }, []);
     return (
-        <TaskContext.Provider value={{ error: state.error, loading: state.loading, allToDo: state.allToDo, pendingToDo: state.pendingToDo, completedToDo: state.completedToDo, toggleTask: toggleTaskStatus }}>
+        <TaskContext.Provider value={{ error: state.error, loading: state.loading, allToDo: state.allToDo, pendingToDo: filteredPendingTask, completedToDo: filteredCompletedTask, toggleTask: toggleTaskStatus }}>
             {children}
         </TaskContext.Provider>
     )

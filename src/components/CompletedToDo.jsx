@@ -1,9 +1,11 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { TaskContext } from '../contexts/TaskContext';
+import { StyledLinkMore } from './AllToDo';
 
 function CompletedToDo() {
     const { completedToDo } = useContext(TaskContext);
+    const { toggleTask } = useContext(TaskContext);
     return (
         <>
             <StyledH2>Task Completed</StyledH2>
@@ -18,8 +20,8 @@ function CompletedToDo() {
                                     <StyledStatus>Status: </StyledStatus><StyledStatusValue> {isCompleted ? "Done" : "Pending"}</StyledStatusValue>
                                 </StyledStatusContainer>
                                 <StyledButtonContainer>
-                                    <StyledBtnDone>{!isCompleted ? "Mark as Done" : "Mark as Pending"}</StyledBtnDone>
-                                    <StyledBtnMore>See More</StyledBtnMore>
+                                    <StyledBtnDone onClick={() => toggleTask(item)}>{!isCompleted ? "Mark as Done" : "Mark as Pending"}</StyledBtnDone>
+                                    <StyledLinkMore to={`/taskCard/${id}`}>See More</StyledLinkMore>
                                 </StyledButtonContainer>
                             </StyledLi>
                         )

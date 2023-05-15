@@ -2,18 +2,20 @@ import React, { useContext } from 'react'
 import styled from 'styled-components';
 
 import { TaskContext } from '../contexts/TaskContext';
+import { Link } from 'react-router-dom';
 
 function AllToDo() {
     const { allToDo } = useContext(TaskContext);
     const { loading } = useContext(TaskContext);
     const { error } = useContext(TaskContext);
+    const { toggleTask } = useContext(TaskContext);
     return (
         <>
             {error.length !== 0 ? <StyledH2>{error}</StyledH2> : <StyledH2>{loading && "Loading..." ? "Loading..." : "Task Summary"}</StyledH2>}
             <StyledUl>
                 {
                     allToDo.map((item) => {
-                        const { id, title, description, isCompleted } = item;
+                        const { id, title, isCompleted } = item;
                         return (
                             <StyledLi key={id}>
                                 <StyledTask>Task: {title}</StyledTask>
@@ -21,8 +23,8 @@ function AllToDo() {
                                     <StyledStatus>Status: </StyledStatus><StyledStatusValue> {isCompleted ? "Done" : "Pending"}</StyledStatusValue>
                                 </StyledStatusContainer>
                                 <StyledButtonContainer>
-                                    <StyledBtnDone>{!isCompleted ? "Mark as Done" : "Mark as Pending"}</StyledBtnDone>
-                                    <StyledBtnMore>See More</StyledBtnMore>
+                                    <StyledBtnDone onClick={() => toggleTask(item)}>{!isCompleted ? "Mark as Done" : "Mark as Pending"}</StyledBtnDone>
+                                    <StyledLinkMore to={`/taskCard/${id}`}>See More</StyledLinkMore>
                                 </StyledButtonContainer>
                             </StyledLi>
                         )
@@ -102,12 +104,32 @@ export const StyledButtonContainer = styled.div`
     align-items: center;
     margin-bottom: -0.5rem;
 `;
-export const StyledBtnMore = styled.button`
+export const StyledBtnDone = styled.button`
     border: none;
     border-radius: 5px;
     font-weight: bold;
     width: 110px;
     height: 40px;
+    cursor: pointer;
+    margin-right: 0.5rem;
+    text-align: center;
+    padding: 0.5rem;
+    background: white;
+    transition: all 0.3s ease-out;
+    &:hover{
+        background: #272343;
+        color: white;
+    }
+`;
+export const StyledLinkMore = styled(Link)`
+    border: none;
+    text-decoration: none;
+    color: #272343;
+    border-radius: 5px;
+    font-weight: bold;
+    width: 110px;
+    height: 24px;
+    margin-left: 0.5rem;
     cursor: pointer;
     text-align: center;
     padding: 0.5rem;
@@ -118,4 +140,3 @@ export const StyledBtnMore = styled.button`
         color: white;
     }
 `;
-export const StyledBtnDone = styled(StyledBtnMore)``;
